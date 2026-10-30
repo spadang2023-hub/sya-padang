@@ -1,5 +1,6 @@
 import streamlit as st
 import html
+import random
 
 # ============================================================
 # PAGE SETTINGS
@@ -244,6 +245,221 @@ st.markdown(
         0%, 100% { filter: brightness(1); }
         50% { filter: brightness(1.3); }
     }
+
+    /* ===== EXAM EDITION VISUAL UPGRADE ===== */
+    .stApp::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+            radial-gradient(circle at 15% 20%, rgba(99,102,241,.13) 0 2px, transparent 3px),
+            radial-gradient(circle at 75% 35%, rgba(168,85,247,.11) 0 2px, transparent 3px),
+            radial-gradient(circle at 45% 80%, rgba(236,72,153,.10) 0 2px, transparent 3px);
+        background-size: 120px 120px, 170px 170px, 220px 220px;
+        animation: particlesMove 18s linear infinite;
+        z-index: 0;
+    }
+
+    .main .block-container {
+        max-width: 1050px;
+        padding-top: 2rem;
+    }
+
+    .hero {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,.18);
+        backdrop-filter: blur(14px);
+    }
+
+    .hero::before,
+    .hero::after {
+        content: "";
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: rgba(255,255,255,.08);
+        filter: blur(2px);
+    }
+
+    .hero::before {
+        top: -90px;
+        left: -40px;
+        animation: orb 7s ease-in-out infinite;
+    }
+
+    .hero::after {
+        bottom: -100px;
+        right: -30px;
+        animation: orb 9s ease-in-out infinite reverse;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .section-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 22px 0 8px;
+    }
+
+    .section-title .icon {
+        width: 46px;
+        height: 46px;
+        display: grid;
+        place-items: center;
+        border-radius: 15px;
+        background: linear-gradient(135deg, #6366f1, #a855f7);
+        box-shadow: 0 8px 25px rgba(99,102,241,.30);
+        animation: iconFloat 3s ease-in-out infinite;
+    }
+
+    .section-title h2 {
+        margin: 0;
+    }
+
+    .feature-strip {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin: 18px 0 28px;
+    }
+
+    .feature {
+        padding: 16px;
+        border-radius: 18px;
+        text-align: center;
+        background: rgba(15,23,42,.68);
+        border: 1px solid rgba(148,163,184,.14);
+        backdrop-filter: blur(10px);
+        transition: .25s ease;
+    }
+
+    .feature:hover {
+        transform: translateY(-5px);
+        border-color: rgba(129,140,248,.45);
+        box-shadow: 0 12px 30px rgba(0,0,0,.25);
+    }
+
+    .feature .big {
+        font-size: 1.7rem;
+    }
+
+    .feature b {
+        display: block;
+        margin-top: 5px;
+        color: #f8fafc;
+    }
+
+    .tip strong {
+        color: #c4b5fd;
+    }
+
+    .calculator-display {
+        font-size: clamp(32px, 5vw, 48px);
+        letter-spacing: 2px;
+        border: 1px solid rgba(129,140,248,.35);
+        box-shadow: 0 0 0 1px rgba(255,255,255,.03), 0 18px 45px rgba(0,0,0,.45);
+    }
+
+    div.stButton > button {
+        position: relative;
+        overflow: hidden;
+        letter-spacing: .2px;
+    }
+
+    div.stButton > button::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -120%;
+        width: 80%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.20), transparent);
+        transform: skewX(-20deg);
+        transition: left .55s ease;
+    }
+
+    div.stButton > button:hover::after {
+        left: 140%;
+    }
+
+    .quiz-question-card {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .quiz-question-card::after {
+        content: "";
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        padding: 5px 9px;
+        border-radius: 999px;
+        font-size: .65rem;
+        font-weight: 900;
+        letter-spacing: 1px;
+        color: #ddd6fe;
+        background: rgba(99,102,241,.20);
+        border: 1px solid rgba(167,139,250,.25);
+    }
+
+    .result-card {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .result-card::before {
+        content: "✦  ✧  ✦  ✧  ✦";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 8px;
+        opacity: .35;
+        letter-spacing: 25px;
+        animation: sparkle 3s linear infinite;
+    }
+
+    @keyframes particlesMove {
+        from { transform: translateY(0); }
+        to { transform: translateY(-120px); }
+    }
+
+    @keyframes glowPulse {
+        0%, 100% { box-shadow: 0 0 10px rgba(167,139,250,.10); }
+        50% { box-shadow: 0 0 24px rgba(167,139,250,.22); }
+    }
+
+    @keyframes orb {
+        0%, 100% { transform: translate(0,0) scale(1); }
+        50% { transform: translate(30px,20px) scale(1.15); }
+    }
+
+    @keyframes iconFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-4px); }
+    }
+
+    @keyframes sparkle {
+        0% { transform: translateX(-15px); opacity: .15; }
+        50% { opacity: .45; }
+        100% { transform: translateX(15px); opacity: .15; }
+    }
+
+    @media (max-width: 700px) {
+        .feature-strip {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+        }
+    }
+
     </style>
     """,
     unsafe_allow_html=True
@@ -256,8 +472,33 @@ st.markdown(
 st.markdown(
     """
     <div class="hero">
-        <h1>🎓 Student Hub</h1>
-        <p>✨ My Profile • 🧮 Calculator • 📚 Grade Calculator • 🧠 Master Quiz Maker</p>
+        <div class="hero-content">
+            <h1>🎓 Student Hub</h1>
+            <p>One polished app for your profile, calculations, grades, and interactive quizzes.</p>
+        </div>
+    </div>
+
+    <div class="feature-strip">
+        <div class="feature">
+            <div class="big">👤</div>
+            <b>Profile</b>
+            <span>Personal info</span>
+        </div>
+        <div class="feature">
+            <div class="big">🧮</div>
+            <b>Calculator</b>
+            <span>Fast & accurate</span>
+        </div>
+        <div class="feature">
+            <div class="big">🎓</div>
+            <b>Grades</b>
+            <span>GPA & results</span>
+        </div>
+        <div class="feature">
+            <div class="big">🧠</div>
+            <b>Quiz Maker</b>
+            <span>Interactive test</span>
+        </div>
     </div>
     """,
     unsafe_allow_html=True
@@ -267,7 +508,7 @@ st.markdown(
 # PROFILE
 # ============================================================
 
-st.header("👤 My Profile")
+st.markdown('<div class="section-title"><div class="icon">👤</div><h2>My Profile</h2></div>', unsafe_allow_html=True)
 st.caption("✨ Tell us a little about yourself!")
 
 with st.container(border=True):
@@ -343,7 +584,7 @@ with st.container(border=True):
 # ============================================================
 
 st.divider()
-st.header("🧮 Calculator")
+st.markdown('<div class="section-title"><div class="icon">🧮</div><h2>Calculator</h2></div>', unsafe_allow_html=True)
 st.caption("Try it! Example: 5 × 4 = 20")
 
 if "calculator" not in st.session_state:
@@ -570,11 +811,164 @@ with col2:
     st.button("🗑️ CLEAR", key="clear", on_click=clear_click, use_container_width=True)
 
 # ============================================================
+# SECRET NUMBER GUESSING GAME
+# ============================================================
+
+st.divider()
+st.markdown(
+    '<div class="section-title"><div class="icon">🎯</div><h2>Secret Number Challenge</h2></div>',
+    unsafe_allow_html=True
+)
+st.caption("🤫 The computer has picked a secret number. Can you guess it?")
+
+game_modes = {
+    "Very Easy": {"minimum": 1, "maximum": 10, "guesses": 10},
+    "Easy": {"minimum": 1, "maximum": 50, "guesses": 8},
+    "Normal": {"minimum": 1, "maximum": 100, "guesses": 7},
+    "Hard": {"minimum": 1, "maximum": 500, "guesses": 6},
+}
+
+selected_mode = st.selectbox(
+    "🎮 Choose your difficulty",
+    list(game_modes.keys()),
+    key="guessing_mode"
+)
+mode_settings = game_modes[selected_mode]
+
+st.markdown(
+    f"""
+    <div class="feature-strip">
+        <div class="feature">🔢 Range: <b>{mode_settings['minimum']}–{mode_settings['maximum']}</b></div>
+        <div class="feature">❤️ Maximum guesses: <b>{mode_settings['guesses']}</b></div>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+# Start a fresh game when the player starts or changes difficulty.
+if "guess_game_mode" not in st.session_state:
+    st.session_state.guess_game_mode = None
+if "secret_number" not in st.session_state:
+    st.session_state.secret_number = None
+if "guess_count" not in st.session_state:
+    st.session_state.guess_count = 0
+if "guess_game_finished" not in st.session_state:
+    st.session_state.guess_game_finished = True
+if "guess_feedback" not in st.session_state:
+    st.session_state.guess_feedback = ""
+
+def start_guessing_game():
+    settings = game_modes[st.session_state.guessing_mode]
+    st.session_state.guess_game_mode = st.session_state.guessing_mode
+    st.session_state.secret_number = random.randint(
+        settings["minimum"], settings["maximum"]
+    )
+    st.session_state.guess_count = 0
+    st.session_state.guess_game_finished = False
+    st.session_state.guess_feedback = ""
+    # Reset the input to a value inside the selected difficulty range.
+    st.session_state.number_guess_input = settings["minimum"]
+
+def submit_number_guess():
+    if st.session_state.guess_game_finished:
+        return
+
+    guess = int(st.session_state.number_guess_input)
+    settings = game_modes[st.session_state.guess_game_mode]
+
+    if not settings["minimum"] <= guess <= settings["maximum"]:
+        st.session_state.guess_feedback = "out_of_range"
+        return
+
+    st.session_state.guess_count += 1
+
+    if guess == st.session_state.secret_number:
+        st.session_state.guess_feedback = "correct"
+        st.session_state.guess_game_finished = True
+    elif st.session_state.guess_count >= settings["guesses"]:
+        st.session_state.guess_feedback = "out_of_guesses"
+        st.session_state.guess_game_finished = True
+    elif guess > st.session_state.secret_number:
+        st.session_state.guess_feedback = "too_high"
+    else:
+        st.session_state.guess_feedback = "too_low"
+
+if (
+    st.session_state.guess_game_mode is not None
+    and st.session_state.guess_game_mode != selected_mode
+):
+    st.session_state.guess_game_finished = True
+    st.session_state.secret_number = None
+    st.session_state.guess_feedback = ""
+    # A previous mode may have left a number outside this mode's range.
+    st.session_state.number_guess_input = mode_settings["minimum"]
+
+game_col1, game_col2 = st.columns(2)
+with game_col1:
+    st.button(
+        "🎲 Start / New Game",
+        key="start_guessing_game",
+        on_click=start_guessing_game,
+        use_container_width=True
+    )
+with game_col2:
+    guesses_used = st.session_state.guess_count
+    st.metric("Guesses used", f"{guesses_used} / {mode_settings['guesses']}")
+
+if (
+    st.session_state.guess_game_mode == selected_mode
+    and st.session_state.secret_number is not None
+    and not st.session_state.guess_game_finished
+):
+    remaining = mode_settings["guesses"] - st.session_state.guess_count
+    st.info(
+        f"🔍 Guess a number from {mode_settings['minimum']} to "
+        f"{mode_settings['maximum']}. You have {remaining} guess(es) left."
+    )
+
+    st.number_input(
+        "Your guess",
+        min_value=mode_settings["minimum"],
+        max_value=mode_settings["maximum"],
+        step=1,
+        key="number_guess_input"
+    )
+    st.button(
+        "✨ Check My Guess",
+        key="submit_number_guess",
+        on_click=submit_number_guess,
+        use_container_width=True
+    )
+
+if st.session_state.guess_feedback == "out_of_range":
+    st.warning("Please enter a number within the selected mode's range.")
+elif st.session_state.guess_feedback == "too_high":
+    st.warning("⬆️ Too high! Try a smaller number.")
+elif st.session_state.guess_feedback == "too_low":
+    st.warning("⬇️ Too low! Try a bigger number.")
+elif st.session_state.guess_feedback == "correct":
+    st.success(
+        f"🎉 You got it! The secret number was "
+        f"{st.session_state.secret_number}. "
+        f"You guessed it in {st.session_state.guess_count} attempt(s)!"
+    )
+    st.balloons()
+elif st.session_state.guess_feedback == "out_of_guesses":
+    st.error(
+        f"💡 No guesses left! The secret number was "
+        f"{st.session_state.secret_number}. Press Start / New Game to try again."
+    )
+elif st.session_state.guess_game_mode is None:
+    st.info("Press **Start / New Game** when you're ready to play!")
+elif st.session_state.guess_game_mode != selected_mode:
+    st.info("You changed difficulty. Press **Start / New Game** to begin a new round.")
+
+# ============================================================
 # GRADE CALCULATOR
 # ============================================================
 
 st.divider()
-st.header("🎓 Grade Calculator")
+st.markdown('<div class="section-title"><div class="icon">🎓</div><h2>Grade Calculator</h2></div>', unsafe_allow_html=True)
 st.caption("📚 Enter your subjects and marks from 0 to 100.")
 
 number_of_subjects = st.number_input(
@@ -768,7 +1162,7 @@ with col4:
 # ============================================================
 
 st.divider()
-st.header("🧠 Master Quiz Maker")
+st.markdown('<div class="section-title"><div class="icon">🧠</div><h2>Master Quiz Maker</h2></div>', unsafe_allow_html=True)
 st.caption("🎮 Create your own quiz with questions, choices, and correct answers!")
 
 quiz_title = st.text_input(
@@ -1100,6 +1494,12 @@ if st.session_state.get("quiz_started", False):
 # ============================================================
 
 st.divider()
+
+st.markdown(
+    """
+    """,
+    unsafe_allow_html=True
+)
 
 st.markdown(
     """
